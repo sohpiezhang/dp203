@@ -1,0 +1,17 @@
+{
+	"name": "create user",
+	"properties": {
+		"content": {
+			"query": "\ncreate login [asa.sql.workload01] with password = 'Tutorial_Password1'\ncreate login [asa.sql.workload02] with password = 'Tutorial_Password1'\ncreate login [asa.sql.import01] with password = 'Tutorial_Password1'\ncreate login [asa.sql.import02] with password = 'Tutorial_Password1'\ncreate login [asa.sql.highperf] with password = 'Tutorial_Password1'\n\ncreate user [asa.sql.workload01] for login [asa.sql.workload01]\ncreate user [asa.sql.workload02] for login [asa.sql.workload02]\nexecute sp_addrolemember 'db_datareader', 'asa.sql.workload01' \nexecute sp_addrolemember 'db_datareader', 'asa.sql.workload02'\n\n\ncreate user [asa.sql.import01] for login [asa.sql.import01]\ncreate user [asa.sql.import02] for login [asa.sql.import02]\nexecute sp_addrolemember 'db_owner', 'asa.sql.import01'  \nexecute sp_addrolemember 'db_owner', 'asa.sql.import02' \n\n\ncreate user [asa.sql.highperf] for login [asa.sql.highperf]\nexecute sp_addrolemember 'db_owner', 'asa.sql.highperf' \nexecute sp_addrolemember 'staticrc80', 'asa.sql.highperf' \n  ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "demo",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

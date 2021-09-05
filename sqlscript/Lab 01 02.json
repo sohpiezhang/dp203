@@ -1,0 +1,17 @@
+{
+	"name": "Lab 01 02",
+	"properties": {
+		"content": {
+			"query": "SELECT [country_code]\n    ,[country_name]\n    ,[year]\n    ,[population]\nFROM [dbo].[population]\nWHERE [year] = 2019 and population > 100000000\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "demo",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

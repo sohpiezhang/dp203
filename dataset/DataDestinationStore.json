@@ -1,0 +1,16 @@
+{
+	"name": "DataDestinationStore",
+	"properties": {
+		"description": "Connection to your Azure Synapse Analytics.",
+		"linkedServiceName": {
+			"referenceName": "orcaleAzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"typeProperties": {
+			"tableName": "test"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

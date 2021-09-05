@@ -1,0 +1,24 @@
+{
+	"name": "cosmosdbHTAP",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Copy Cosmos DB Container",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-09-05T06:34:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

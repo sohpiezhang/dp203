@@ -1,0 +1,258 @@
+{
+	"name": "cosmos Notebook 1",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool01",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/3600cd0c-0725-4a38-8ac6-e135b659c5c8/resourceGroups/dp203/providers/Microsoft.Synapse/workspaces/asaworkspacedp203xb/bigDataPools/SparkPool01",
+				"name": "SparkPool01",
+				"type": "Spark",
+				"endpoint": "https://asaworkspacedp203xb.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool01",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "2.4",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			}
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"diagram": {
+						"activateDiagramType": 1,
+						"chartConfig": {
+							"category": "bar",
+							"keys": [
+								"_rid"
+							],
+							"values": [
+								"_ts"
+							],
+							"yLabel": "_ts",
+							"xLabel": "_rid",
+							"aggregation": "SUM",
+							"aggByBackend": false
+						},
+						"aggData": "{\"_ts\":{\"wTpmANnEtjRklgAAAAAAAA==\":1630821661,\"wTpmANnEtjRllgAAAAAAAA==\":1630821661,\"wTpmANnEtjRmlgAAAAAAAA==\":1630821661,\"wTpmANnEtjRnlgAAAAAAAA==\":1630821661,\"wTpmANnEtjRolgAAAAAAAA==\":1630821661,\"wTpmANnEtjRplgAAAAAAAA==\":1630821661,\"wTpmANnEtjRqlgAAAAAAAA==\":1630821661,\"wTpmANnEtjRrlgAAAAAAAA==\":1630821661,\"wTpmANnEtjRslgAAAAAAAA==\":1630821661,\"wTpmANnEtjRtlgAAAAAAAA==\":1630821661}}",
+						"isSummary": false,
+						"previewData": {
+							"filter": null
+						},
+						"isSql": false
+					}
+				},
+				"source": [
+					"# Read from Cosmos DB analytical store into a Spark DataFrame and display 10 rows from the DataFrame\n",
+					"# To select a preferred list of regions in a multi-region Cosmos DB account, add .option(\"spark.cosmos.preferredRegions\", \"<Region1>,<Region2>\")\n",
+					"\n",
+					"df = spark.read\\\n",
+					"    .format(\"cosmos.olap\")\\\n",
+					"    .option(\"spark.synapse.linkedService\", \"asacosmosdb01\")\\\n",
+					"    .option(\"spark.cosmos.container\", \"UserProfileHTAP\")\\\n",
+					"    .load()\n",
+					"\n",
+					"display(df.limit(10))"
+				],
+				"attachments": null,
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"diagram": {
+						"activateDiagramType": 1,
+						"chartConfig": {
+							"category": "bar",
+							"keys": [
+								"cartId"
+							],
+							"values": [
+								"userId"
+							],
+							"yLabel": "userId",
+							"xLabel": "cartId",
+							"aggregation": "SUM",
+							"aggByBackend": false
+						},
+						"aggData": "{\"userId\":{\"12278c93-80e1-4381-92a0-8ff452ed546f\":39415,\"28cf710b-21fa-41fe-b58c-96c90c5382fd\":24626,\"2a78ddfd-febe-4505-9041-4e69dfb8feac\":36496,\"60a383fa-85cf-49f9-863f-53dec45b790e\":35206,\"b530703b-9a19-4896-bbb2-5e7a3767877c\":18680,\"c39935ec-0882-4717-9722-32646d2a0aa1\":23542,\"c87202eb-da51-46dc-a4ec-b1ac00d8ff22\":32053,\"cb9d7075-6673-403f-84f5-a48af4b0ff9f\":2384,\"cc49caea-dc99-4919-9c3d-02ae7c29a3db\":20031,\"ef1576ad-db2d-4593-8307-0db1ceb86917\":20573}}",
+						"isSummary": false,
+						"previewData": {
+							"filter": null
+						},
+						"isSql": false
+					}
+				},
+				"source": [
+					"unwanted_cols = {'_attachments','_etag','_rid','_self','_ts','collectionType','id'}\n",
+					"\n",
+					"# Remove unwanted columns from the columns collection\n",
+					"cols = list(set(df.columns) - unwanted_cols)\n",
+					"\n",
+					"profiles = df.select(cols)\n",
+					"\n",
+					"display(profiles.limit(10))\n",
+					""
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"diagram": {
+						"activateDiagramType": 1,
+						"chartConfig": {
+							"category": "bar",
+							"keys": [],
+							"values": [
+								"userId"
+							],
+							"yLabel": "userId",
+							"xLabel": "",
+							"aggregation": "SUM",
+							"aggByBackend": false
+						},
+						"aggData": "{\"userId\":{\"\":284637}}",
+						"isSummary": false,
+						"previewData": {
+							"filter": null
+						},
+						"isSql": false
+					}
+				},
+				"source": [
+					"from pyspark.sql.functions import udf, explode\n",
+					"\n",
+					"preferredProductsFlat=profiles.select('userId',explode('preferredProducts').alias('productId'))\n",
+					"productReviewsFlat=profiles.select('userId',explode('productReviews').alias('productReviews'))\n",
+					"display(productReviewsFlat.limit(10))\n",
+					""
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"diagram": {
+						"activateDiagramType": 1,
+						"chartConfig": {
+							"category": "bar",
+							"keys": [
+								"productId"
+							],
+							"values": [
+								"userId"
+							],
+							"yLabel": "userId",
+							"xLabel": "productId",
+							"aggregation": "SUM",
+							"aggByBackend": false
+						},
+						"aggData": "{\"userId\":{\"374\":2,\"1808\":2,\"2864\":1,\"2900\":2,\"3286\":1,\"3397\":1,\"3687\":1,\"4151\":2,\"4450\":2,\"4953\":1}}",
+						"isSummary": false,
+						"previewData": {
+							"filter": null
+						},
+						"isSql": false
+					}
+				},
+				"source": [
+					"productReviews = (productReviewsFlat.select('userId','productReviews.productId','productReviews.reviewText')\n",
+					"    .orderBy('userId'))\n",
+					"\n",
+					"display(productReviews.limit(10))\n",
+					""
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"diagram": {
+						"activateDiagramType": 1,
+						"chartConfig": {
+							"category": "bar",
+							"keys": [
+								"productId"
+							],
+							"values": [
+								"userId"
+							],
+							"yLabel": "userId",
+							"xLabel": "productId",
+							"aggregation": "SUM",
+							"aggByBackend": false
+						},
+						"aggData": "{\"userId\":{\"54\":18314,\"118\":19202,\"174\":2662,\"210\":12869,\"236\":30854,\"319\":5014,\"321\":9505,\"375\":26687,\"389\":346,\"403\":6235,\"427\":26099,\"486\":21883,\"493\":22915,\"498\":20269,\"520\":11697,\"543\":12632,\"656\":1590,\"684\":518,\"734\":5389,\"770\":14883,\"957\":10302,\"989\":11546,\"1027\":23642,\"1183\":29507,\"1188\":30770,\"1229\":18882,\"1536\":20764,\"1627\":16338,\"1639\":549,\"1727\":33017,\"1838\":922,\"1851\":24607,\"1954\":2382,\"1964\":13794,\"2044\":3496,\"2048\":24773,\"2075\":21294,\"2078\":5316,\"2168\":28570,\"2183\":23756,\"2207\":32955,\"2221\":29060,\"2274\":27603,\"2297\":3892,\"2420\":20875,\"2453\":1550,\"2478\":929,\"2513\":9939,\"2613\":21933,\"2624\":3971,\"2638\":30316,\"2640\":8482,\"2665\":21822,\"2739\":4684,\"2765\":12075,\"2793\":23408,\"2809\":6435,\"2822\":27575,\"2828\":18355,\"2830\":13634,\"2853\":23655,\"3035\":3616,\"3048\":26447,\"3060\":16715,\"3114\":14892,\"3241\":24063,\"3298\":9117,\"3320\":6686,\"3342\":24725,\"3439\":22598,\"3441\":22496,\"3487\":6049,\"3544\":31273,\"3553\":13119,\"3586\":7761,\"3590\":21066,\"3595\":20950,\"3681\":12760,\"3854\":7520,\"3890\":22776,\"3988\":31992,\"4003\":2863,\"4020\":20647,\"4063\":1557,\"4155\":19442,\"4163\":2177,\"4255\":29396,\"4351\":25821,\"4427\":19645,\"4471\":29929,\"4477\":9935,\"4500\":19221,\"4603\":11948,\"4607\":17080,\"4622\":20681,\"4627\":20302,\"4677\":22196,\"4680\":22630,\"4831\":28581,\"4916\":31958}}",
+						"isSummary": false,
+						"previewData": {
+							"filter": null
+						},
+						"isSql": false
+					}
+				},
+				"source": [
+					"preferredProductReviews = (preferredProductsFlat.join(productReviews,\n",
+					"    (preferredProductsFlat.userId == productReviews.userId) &\n",
+					"    (preferredProductsFlat.productId == productReviews.productId))\n",
+					")\n",
+					"\n",
+					"display(preferredProductReviews.limit(100))\n",
+					""
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"cellLanguage": "python",
+					"tags": [
+						"parameters"
+					]
+				},
+				"source": [
+					"import uuid\n",
+					"\n",
+					"# Generate random GUID\n",
+					"runId = uuid.uuid4()\n",
+					""
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"\n",
+					"productReviews.write.parquet('abfss://wwi-02@asadatalakedp203xb.dfs.core.windows.net/ProductReviews/' + str(runId) + '.parquet')\n",
+					""
+				],
+				"execution_count": 8
+			}
+		]
+	}
+}

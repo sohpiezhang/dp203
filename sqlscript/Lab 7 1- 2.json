@@ -1,0 +1,17 @@
+{
+	"name": "Lab 7 1- 2",
+	"properties": {
+		"content": {
+			"query": "TRUNCATE TABLE [wwi_staging].[SaleHeap]\nGO\n\n-- Replace <PrimaryStorage> with the workspace default storage account name.\nCOPY INTO [wwi_staging].[SaleHeap]\nFROM 'https://asadatalakedp203xb.dfs.core.windows.net/wwi-02/sale-small/Year=2019'\nWITH (\n    FILE_TYPE = 'PARQUET',\n    COMPRESSION = 'SNAPPY'\n)\nGO\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

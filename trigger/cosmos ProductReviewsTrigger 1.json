@@ -1,0 +1,24 @@
+{
+	"name": "cosmos ProductReviewsTrigger 1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "cosmos  ProductReviews",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-09-05T07:00:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

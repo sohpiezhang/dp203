@@ -1,0 +1,16 @@
+{
+	"name": "DataSourceStore",
+	"properties": {
+		"description": "Connection to your Oracle server.",
+		"linkedServiceName": {
+			"referenceName": "Oracle1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"typeProperties": {
+			"tableName": "test"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

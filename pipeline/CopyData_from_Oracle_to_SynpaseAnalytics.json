@@ -1,0 +1,62 @@
+{
+	"name": "CopyData_from_Oracle_to_SynpaseAnalytics",
+	"properties": {
+		"description": "Copy data from Oracle server to Azure Synapse Analytics.\n\n\nYou can also go to \"Copy Data Tool\" to get the pipeline for more connectors and scenarios.",
+		"activities": [
+			{
+				"name": "Oracle_to_SynapseAnalytics",
+				"description": "Copy data from Oracle server to Azure Synapse Analytics",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBatchSize": 10000,
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "asadatalakedp203xb",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"enableSkipIncompatibleRow": false,
+					"dataIntegrationUnits": 0
+				},
+				"inputs": [
+					{
+						"referenceName": "DataSourceStore",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DataDestinationStore",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-09-05T07:20:55Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

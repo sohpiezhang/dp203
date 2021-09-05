@@ -1,0 +1,17 @@
+{
+	"name": "lab 2 3",
+	"properties": {
+		"content": {
+			"query": "SELECT\n    Coalesce(p.[ModelName], p.[EnglishProductName]) AS [Model]\n    ,g.City AS ResellerCity\n    ,g.StateProvinceName AS StateProvince\n    ,d.[CalendarYear]\n    ,d.[FiscalYear]\n    ,d.[MonthOfYear] AS [Month]\n    ,sum(f.OrderQuantity) AS Quantity\n    ,sum(f.ExtendedAmount) AS Amount\n    ,approx_count_distinct(f.SalesOrderNumber) AS UniqueOrders  \nFROM\n    [dbo].[FactResellerSales] f\nINNER JOIN [dbo].[DimReseller] r\n    ON f.ResellerKey = r.ResellerKey\nINNER JOIN [dbo].[DimGeography] g\n    ON r.GeographyKey = g.GeographyKey\nINNER JOIN [dbo].[DimDate] d\n    ON f.[OrderDateKey] = d.[DateKey]\nINNER JOIN [dbo].[DimProduct] p\n    ON f.[ProductKey] = p.[ProductKey]\nWHERE d.[MonthOfYear] = 10 AND d.[FiscalYear] IN (2012, 2013)\nGROUP BY\n    Coalesce(p.[ModelName], p.[EnglishProductName])\n    ,g.City\n    ,g.StateProvinceName\n    ,d.[CalendarYear]\n    ,d.[FiscalYear]\n    ,d.[MonthOfYear]\nORDER BY d.[FiscalYear]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQLPool01",
+				"poolName": "SQLPool01"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

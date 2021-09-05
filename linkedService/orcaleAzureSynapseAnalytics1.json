@@ -1,0 +1,23 @@
+{
+	"name": "orcaleAzureSynapseAnalytics1",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDW",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=asaworkspacedp203xb.sql.azuresynapse.net;Initial Catalog=SQLPool01;User ID=\"sql admin\"",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "asakeyvaultdp203xb",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "te"
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

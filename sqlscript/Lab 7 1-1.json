@@ -1,0 +1,17 @@
+{
+	"name": "Lab 7 1-1",
+	"properties": {
+		"content": {
+			"query": "INSERT INTO [wwi_staging].[SaleHeap]\nSELECT *\nFROM [wwi_external].[Sales]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQLPool01",
+				"poolName": "SQLPool01"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

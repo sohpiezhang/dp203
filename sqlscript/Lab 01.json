@@ -1,0 +1,17 @@
+{
+	"name": "Lab 01",
+	"properties": {
+		"content": {
+			"query": "\nSELECT\n    COUNT(*)\nFROM\n    OPENROWSET(\n        BULK 'https://asadatalakedp203xb.dfs.core.windows.net/wwi-02/sale-small/Year=2019/*/*/*/*',\n        FORMAT='PARQUET'\n    ) AS [r];\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

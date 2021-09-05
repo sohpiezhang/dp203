@@ -1,0 +1,17 @@
+{
+	"name": "lab 2 2",
+	"properties": {
+		"content": {
+			"query": "COPY INTO [dbo].[DimProduct]\nFROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/awdata/DimProduct.csv'\nWITH (\n    FILE_TYPE='CSV',\n    FIELDTERMINATOR='|',\n    FIELDQUOTE='',\n    ROWTERMINATOR='\\n',\n    ENCODING = 'UTF16'\n);\nGO\n\nCOPY INTO [dbo].[DimReseller]\nFROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/awdata/DimReseller.csv'\nWITH (\n    FILE_TYPE='CSV',\n    FIELDTERMINATOR='|',\n    FIELDQUOTE='',\n    ROWTERMINATOR='\\n',\n    ENCODING = 'UTF16'\n);\nGO\n\nCOPY INTO [dbo].[DimEmployee]\nFROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/awdata/DimEmployee.csv'\nWITH (\n    FILE_TYPE='CSV',\n    FIELDTERMINATOR='|',\n    FIELDQUOTE='',\n    ROWTERMINATOR='\\n',\n    ENCODING = 'UTF16'\n);\nGO\n\nCOPY INTO [dbo].[DimGeography]\nFROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/awdata/DimGeography.csv'\nWITH (\n    FILE_TYPE='CSV',\n    FIELDTERMINATOR='|',\n    FIELDQUOTE='',\n    ROWTERMINATOR='\\n',\n    ENCODING = 'UTF16'\n);\nGO\n\nCOPY INTO [dbo].[FactResellerSales]\nFROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/awdata/FactResellerSales.csv'\nWITH (\n    FILE_TYPE='CSV',\n    FIELDTERMINATOR='|',\n    FIELDQUOTE='',\n    ROWTERMINATOR='\\n',\n    ENCODING = 'UTF16'\n);\nGO\n\nCOPY INTO [dbo].[DimDate]\nFROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/awdata/DimDate.csv'\nWITH (\n    FILE_TYPE='CSV',\n    FIELDTERMINATOR='|',\n    FIELDQUOTE='',\n    ROWTERMINATOR='0x0a',\n    ENCODING = 'UTF16'\n);\nGO\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQLPool01",
+				"poolName": "SQLPool01"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

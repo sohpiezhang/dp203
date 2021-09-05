@@ -1,0 +1,24 @@
+{
+	"name": "top5productsTrigger 1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "User Profiles to Datalake",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-09-05T06:55:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

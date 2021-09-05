@@ -1,0 +1,17 @@
+{
+	"name": "Lab 01 03",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW CustomerInfo AS\n    SELECT * \nFROM OPENROWSET(\n        BULK 'https://asadatalakedp203xb.dfs.core.windows.net/wwi-02/customer-info/customerinfo.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION='2.0',\n        FIRSTROW=2\n    )\nWITH (\n    [UserName] VARCHAR (50),\n    [Gender] VARCHAR (10),\n    [Phone] VARCHAR (50),\n    [Email] VARCHAR (100),\n    [CreditCard] VARCHAR (50)\n) AS [r];\nGO\n\nSELECT * FROM CustomerInfo;\nGO\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "demo",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
