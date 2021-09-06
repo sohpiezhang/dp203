@@ -37,8 +37,9 @@
 				"nodeCount": 3,
 				"cores": 4,
 				"memory": 28,
-				"extraHeader": null
-			}
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
 		},
 		"cells": [
 			{
@@ -79,8 +80,38 @@
 					"\n",
 					"display(df.limit(10))"
 				],
-				"attachments": null,
 				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"df = spark.read\\\n",
+					"    .format(\"cosmos.oltp\")\\\n",
+					"    .option(\"spark.synapse.linkedService\", \"asacosmosdb01\")\\\n",
+					"    .option(\"spark.cosmos.container\", \"UserProfileHTAP\")\\\n",
+					"    .load()\n",
+					"\n",
+					"display(df.limit(10))"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"# dfSalesOrderStatistic = spark.sql(\"SELECT concat(Country,'-',replace(City,' ','')) AS id, \\\n",
+					"#                                     'SalesOrderStatistic' AS type, \\\n",
+					"#                                     * FROM SalesOrderStatsView\")\n",
+					"\n",
+					"# dfSalesOrderStatistic.write\\\n",
+					"#     .format(\"cosmos.oltp\")\\\n",
+					"#     .option(\"spark.synapse.linkedService\", \"AdventureWorksSQL\")\\\n",
+					"#     .option(\"spark.cosmos.container\", \"Sales\")\\\n",
+					"#     .option(\"spark.cosmos.write.upsertEnabled\", \"true\")\\\n",
+					"#     .mode('append')\\\n",
+					"#     .save()\n",
+					""
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
