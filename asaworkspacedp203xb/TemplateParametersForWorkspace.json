@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "asaworkspacedp203xb"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"Oracle1_connectionString": {
+			"value": ""
+		},
+		"asacosmosdb01_connectionString": {
+			"value": ""
+		},
+		"asadatalakedp203xb_accountKey": {
+			"value": ""
+		},
+		"asastoredp203xb_connectionString": {
+			"value": ""
+		},
+		"asaworkspacedp203xb-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"orcaleAzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
+		"sqlpool01_connectionString": {
+			"value": ""
+		},
+		"sqlpool01_highperf_connectionString": {
+			"value": ""
+		},
+		"sqlpool01_workload01_connectionString": {
+			"value": ""
+		},
+		"sqlpool01_workload02_connectionString": {
+			"value": ""
+		},
+		"asadatalakedp203xb_properties_typeProperties_url": {
+			"value": "https://asadatalakedp203xb.dfs.core.windows.net"
+		},
+		"asakeyvaultdp203xb_properties_typeProperties_baseUrl": {
+			"value": "https://asakeyvaultdp203xb.vault.azure.net/"
+		},
+		"asaworkspacedp203xb-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://asadatalakedp203xb.dfs.core.windows.net"
+		},
+		"sqlpool01_import01_properties_typeProperties_connectionString_secretName": {
+			"value": "SqlPassword"
+		}
+	}
+}
