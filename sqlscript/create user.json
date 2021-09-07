@@ -2,13 +2,13 @@
 	"name": "create user",
 	"properties": {
 		"content": {
-			"query": "\ncreate login [asa.sql.workload01] with password = 'Tutorial_Password1'\ncreate login [asa.sql.workload02] with password = 'Tutorial_Password1'\ncreate login [asa.sql.import01] with password = 'Tutorial_Password1'\ncreate login [asa.sql.import02] with password = 'Tutorial_Password1'\ncreate login [asa.sql.highperf] with password = 'Tutorial_Password1'\n\ncreate user [asa.sql.workload01] for login [asa.sql.workload01]\ncreate user [asa.sql.workload02] for login [asa.sql.workload02]\nexecute sp_addrolemember 'db_datareader', 'asa.sql.workload01' \nexecute sp_addrolemember 'db_datareader', 'asa.sql.workload02'\n\n\ncreate user [asa.sql.import01] for login [asa.sql.import01]\ncreate user [asa.sql.import02] for login [asa.sql.import02]\nexecute sp_addrolemember 'db_owner', 'asa.sql.import01'  \nexecute sp_addrolemember 'db_owner', 'asa.sql.import02' \n\n\ncreate user [asa.sql.highperf] for login [asa.sql.highperf]\nexecute sp_addrolemember 'db_owner', 'asa.sql.highperf' \nexecute sp_addrolemember 'staticrc80', 'asa.sql.highperf' \n  ",
+			"query": "\n-- create login [asa.sql.workloadpool201] with password = 'Tutorial_Password1'\n-- create login [asa.sql.workloadpool202] with password = 'Tutorial_Password1'\n-- create login [asa.sql.importpool201] with password = 'Tutorial_Password1'\n-- create login [asa.sql.importpool202] with password = 'Tutorial_Password1'\n-- create login [asa.sql.pool2highperf] with password = 'Tutorial_Password1'\n\n-- create user [asa.sql.workloadpool201] for login [asa.sql.workloadpool201]\n-- create user [asa.sql.workloadpool202] for login [asa.sql.workloadpool202]\n-- execute sp_addrolemember 'db_datareader', 'asa.sql.workloadpool201' \n-- execute sp_addrolemember 'db_datareader', 'asa.sql.workloadpool202'\n\n\n-- create user [asa.sql.importpool201] for login [asa.sql.importpool201]\n-- create user [asa.sql.importpool202] for login [asa.sql.importpool202]\n-- execute sp_addrolemember 'db_owner', 'asa.sql.importpool201'  \n-- execute sp_addrolemember 'db_owner', 'asa.sql.importpool202' \n\n\n-- create user [asa.sql.pool2highperf] for login [asa.sql.pool2highperf]\nexecute sp_addrolemember 'db_owner', 'asa.sql.pool2highperf' \nexecute sp_addrolemember 'staticrc80', 'asa.sql.pool2highperf' \n  ",
 			"metadata": {
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "demo",
-				"poolName": "Built-in"
+				"databaseName": "master",
+				"poolName": "SQLPool2"
 			},
 			"resultLimit": 5000
 		},

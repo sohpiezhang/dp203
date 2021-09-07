@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 6",
+	"properties": {
+		"content": {
+			"query": "\n\nSELECT TOP 100 *\nFROM OPENROWSET(​PROVIDER = 'CosmosDB',\n                CONNECTION = 'Account=asacosmosdbdp203xb;Database=CustomerProfile',\n                OBJECT = 'UserProfileHTAP',\n                SERVER_CREDENTIAL = 'asacosmosdbdp203xb'\n) AS [UserProfileHTAP]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
